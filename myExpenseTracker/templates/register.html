@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="container">
+    <form action="register" method="POST">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="forfirstName">First Name</label>
+            <input type="text" class="form-control" required id="forfirstName" name="firstName">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="forlastName">Last Name</label>
+            <input type="text" class="form-control" id="forlastName" name="lastName">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="foremail">Email</label>
+            <input type="email" class="form-control" required id="foremail" name="email">
+          </div>
+          <div class="form-group col-md-6">
+              <label for="forusername">Username</label>
+              <input type="text" class="form-control" id="forusername" name="username">
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputPassword1">Password</label>
+                <input type="password" class="form-control" required id="inputPassword1" name="password1">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword2">Confirm Password</label>
+                <input type="password" class="form-control" required id="inputPassword2" name="password2">
+              </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+</div>
+{% endblock%}

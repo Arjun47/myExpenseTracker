@@ -12,15 +12,27 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">TrackMyExpense</a>      
+        <a class="navbar-brand" href="{% url 'index' %}">TrackMyExpense</a>      
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="{% url 'register' %}">Register</a>
             </li>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+          </ul>
+          <span class="navbar-text" style="padding-right: 2em; color:blueviolet;">
+            Welcome, {{request.user.get_full_name.title}}
+          </span>
+            {% endif%}
             <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
@@ -39,6 +51,11 @@
           </form>
         </div>
       </nav>
+
+      {% block content %}
+
+
+      {% endblock %}
   </body>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
